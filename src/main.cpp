@@ -19,32 +19,32 @@ void setup() {
 
 
   if (SmartThing.init("test_device")) {
-    LOGGER.info("main", "SmartThing successfully initialized");
+    SMT_LOG_INFO("main", "SmartThing successfully initialized");
   } else {
-    LOGGER.error("main", "Failed to init SmartThing!");
+    SMT_LOG_ERROR("main", "Failed to init SmartThing!");
   }
   
   if (SmartThing.wifiConnected()) {
     ArduinoOTA.onStart([]() {
-      LOGGER.warning("main", "Ota update started");
+      SMT_LOG_WARNING("main", "Ota update started");
     });
     ArduinoOTA.onError([](ota_error_t err) {
-      LOGGER.warning("main", "Ota update error! code=%d", err);
+      SMT_LOG_WARNING("main", "Ota update error! code=%d", err);
     });
     ArduinoOTA.onEnd([]() {
-      LOGGER.warning("main", "Ota update finsihed!");
+      SMT_LOG_WARNING("main", "Ota update finsihed!");
     });
     
     #ifdef ARDUINO_ARCH_ESP32
     ArduinoOTA.setMdnsEnabled(false);
     #endif
     #ifdef ARDUINO_ARCH_ESP8266
-    SmartThing.callAction("led_on");
+    ActionsManager.call("led_on");
     #endif
     ArduinoOTA.begin();
   }
 
-  LOGGER.info("main", "Setup finished");
+  SMT_LOG_INFO("main", "Setup finished");
 }
 
 void loop() {
@@ -60,11 +60,11 @@ void loop() {
 
 void addActions() {
   #if ENABLE_ACTIONS 
-  SmartThing.addActionHandler("led_off", "Turn led off", []() {
+  ActionsManager.add("led_off", "Turn led off", []() {
     digitalWrite(LED_PIN, LOW);
     return ActionResult(true);
   });
-  SmartThing.addActionHandler("led_on", "Turn led on", []() {
+  ActionsManager.add("led_on", "Turn led on", []() {
     digitalWrite(LED_PIN, HIGH);
     return ActionResult(true);
   });
