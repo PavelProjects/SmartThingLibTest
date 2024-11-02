@@ -17,20 +17,20 @@ void setup() {
   addConfigEntries();
 
   if (SmartThing.init("test_device")) {
-    ST_LOG_INFO("main", "SmartThing successfully initialized");
+    st_log_info("main", "SmartThing successfully initialized");
   } else {
-    ST_LOG_ERROR("main", "Failed to init SmartThing!");
+    st_log_error("main", "Failed to init SmartThing!");
   }
   
   if (SmartThing.wifiConnected()) {
     ArduinoOTA.onStart([]() {
-      ST_LOG_WARNING("main", "Ota update started");
+      st_log_warning("main", "Ota update started");
     });
     ArduinoOTA.onError([](ota_error_t err) {
-      ST_LOG_WARNING("main", "Ota update error! code=%d", err);
+      st_log_warning("main", "Ota update error! code=%d", err);
     });
     ArduinoOTA.onEnd([]() {
-      ST_LOG_WARNING("main", "Ota update finsihed!");
+      st_log_warning("main", "Ota update finsihed!");
     });
     
     #ifdef ARDUINO_ARCH_ESP32
@@ -42,7 +42,7 @@ void setup() {
     ArduinoOTA.begin();
   }
 
-  ST_LOG_INFO("main", "Setup finished");
+  st_log_info("main", "Setup finished");
 }
 
 void loop() {
