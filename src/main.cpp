@@ -85,7 +85,7 @@ void addStates() {
 }
 
 void addConfigEntries() {
-  SmartThing.addConfigEntry("testb", "test boolean value", "boolean");
-  SmartThing.addConfigEntry("testn", "test number value", "number");
-  SmartThing.addConfigEntry("tests", "test string value", "string");
+  SmartThing.addConfigEntry("testb", "test boolean value", CONFIG_BOOLEAN);
+  SmartThing.addConfigEntry("testn", "test number value", CONFIG_INTEGER);
+  SmartThing.addConfigEntry("tests", "test string value", CONFIG_STRING);
 }
