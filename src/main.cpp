@@ -71,13 +71,13 @@ void addActions() {
 
 void addSensors() {
   #if ENABLE_SENSORS
-  SmartThing.addDigitalSensor("button", SENSOR_BUTTON_PIN);
+  ObservablesManager.addDigitalSensor("button", SENSOR_BUTTON_PIN);
   #endif
 }
 
 void addStates() {
   #if ENABLE_STATES 
-  SmartThing.addDeviceState("led", []() {
+  ObservablesManager.addDeviceState("led", []() {
     // Пример возможной логики вычисления значения
     return digitalRead(LED_PIN) == HIGH ? "on" : "off"; 
   });
