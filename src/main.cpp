@@ -5,13 +5,11 @@
 
 #define SENSOR_BUTTON_PIN 12
 
-void addStates();
 void addSensors();
 void addActions();
 void addConfigEntries();
 
 void setup() {
-  addStates();
   addSensors();
   addActions();
   addConfigEntries();
@@ -70,14 +68,11 @@ void addActions() {
 }
 
 void addSensors() {
-  #if ENABLE_SENSORS
-  ObservablesManager.addDigitalSensor("button", SENSOR_BUTTON_PIN);
+  #if ENABLE_NUMBER_SENSORS
+  SensorsManager.addDigitalSensor("button", SENSOR_BUTTON_PIN);
   #endif
-}
-
-void addStates() {
-  #if ENABLE_STATES 
-  ObservablesManager.addDeviceState("led", []() {
+  #if ENABLE_TEXT_SENSORS 
+  SensorsManager.addSensor("led", []() {
     // Пример возможной логики вычисления значения
     return digitalRead(LED_PIN) == HIGH ? "on" : "off"; 
   });
