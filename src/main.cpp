@@ -15,8 +15,6 @@ void setup() {
   addConfigEntries();
 
   if (SmartThing.init("test_device")) {
-    st_log_info("main", "SmartThing successfully initialized");
-  } else {
     st_log_error("main", "Failed to init SmartThing!");
   }
   
@@ -80,7 +78,5 @@ void addSensors() {
 }
 
 void addConfigEntries() {
-  SettingsRepository.addConfigEntry("testb", "test boolean value", CONFIG_BOOLEAN);
-  SettingsRepository.addConfigEntry("testn", "test number value", CONFIG_INTEGER);
-  SettingsRepository.addConfigEntry("tests", "test string value", CONFIG_STRING);
+  SettingsRepository.addConfigEntry("test value");
 }
