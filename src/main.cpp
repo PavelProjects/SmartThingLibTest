@@ -14,7 +14,7 @@ void setup() {
   addActions();
   addConfigEntries();
 
-  if (SmartThing.init("test_device")) {
+  if (!SmartThing.init("test_device")) {
     st_log_error("main", "Failed to init SmartThing!");
   }
   
