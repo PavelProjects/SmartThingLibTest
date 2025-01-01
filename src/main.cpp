@@ -78,5 +78,7 @@ void addSensors() {
 }
 
 void addConfigEntries() {
-  SettingsRepository.addConfigEntry("test value");
+  #if ENABLE_CONFIG
+    SettingsRepository.addConfigEntry("test value");
+  #endif
 }
