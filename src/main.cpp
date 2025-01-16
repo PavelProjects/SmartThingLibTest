@@ -69,10 +69,13 @@ void addSensors() {
 	
 	#if ENABLE_TEXT_SENSORS // Проверка, что текстовые сенсоры включены
 		// Текстовый сенсор по умолчанию хранит в себе String
+		// Пример возможной логики вычисления значений
 		SensorsManager.addSensor("led", []() {
-			// Пример возможной логики вычисления значения
 			return digitalRead(LED_PIN) == HIGH ? "on" : "off";
 		});
+    SensorsManager.addSensor("wifi", []() {
+      return SmartThing.wifiConnected() ? "connected" : "disconnected";
+    });
 	#endif
 }
 
