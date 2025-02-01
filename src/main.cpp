@@ -58,11 +58,11 @@ void addSensors() {
 	#if ENABLE_NUMBER_SENSORS // Проверка, что числовые сенсоры включены
 		// Числовой сенсор по умолчанию хранит в себе long
 		// Внутри настраивает пин и читает его значение с помощью digitalRead
-		SensorsManager.addDigitalSensor("button", 12);
+		SensorsManager.addDigital("button", 12);
 		// Читает значение с пина с помощью analogRead
-		SensorsManager.addAnalogSensor("analog", 14);
+		SensorsManager.addAnalog("analog", 14);
 		// Добавление сенсора с кастомной логикой вычисления значения
-		SensorsManager.addSensor("millis", []() {
+		SensorsManager.add("millis", []() {
 			return millis();
 		});
 	#endif
@@ -70,10 +70,10 @@ void addSensors() {
 	#if ENABLE_TEXT_SENSORS // Проверка, что текстовые сенсоры включены
 		// Текстовый сенсор по умолчанию хранит в себе String
 		// Пример возможной логики вычисления значений
-		SensorsManager.addSensor("led", []() {
+		SensorsManager.add("led", []() {
 			return digitalRead(LED_PIN) == HIGH ? "on" : "off";
 		});
-    SensorsManager.addSensor("wifi", []() {
+    SensorsManager.add("wifi", []() {
       return SmartThing.wifiConnected() ? "connected" : "disconnected";
     });
 	#endif
@@ -83,11 +83,11 @@ void addSensors() {
 void addConfigEntries() {
 	#if ENABLE_CONFIG
 		// Для добавления конфигурации необходимо указать только ее системное имя без пробелов
-		ConfigManager.addConfigEntry("test-value");
+		ConfigManager.add("test-value");
 		
 		// На значении конфигурации можно ссылаться в некоторых полях хуков
 		// Или получить его значение в коде, по названию конфигурации
-		// ConfigManager.getConfigValue("test-value");
+		// ConfigManager.get("test-value");
 
 		// Можно добавить слушатель на обновление конфигурации
 		ConfigManager.onConfigUpdate([]() {
